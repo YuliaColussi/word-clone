@@ -12,7 +12,7 @@ console.info({ answer });
 
 function Game() {
   const [ guessesList, setGuessesList ] = React.useState([]);
-    console.log(guessesList);
+
   return (
       <>
         <GuessesList guessesList={guessesList}/>

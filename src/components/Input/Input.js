@@ -5,7 +5,13 @@ function Input({guessesList, setGuessesList}) {
 
     function handleFormSubmit(event) {
         event.preventDefault();
-        setGuessesList([...guessesList, inputValue])
+
+        const nextInputValue = {
+            value: inputValue,
+            id: Math.random()
+        }
+
+        setGuessesList([...guessesList, nextInputValue])
 
         setInputValue('');
     }
