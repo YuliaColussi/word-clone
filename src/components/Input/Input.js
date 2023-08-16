@@ -1,6 +1,7 @@
 import React from 'react';
+import {checkGuess} from "./../../game-helpers";
 
-function Input({guessesList, setGuessesList}) {
+function Input({guessesList, setGuessesList, answer}) {
     const [ inputValue, setInputValue ] = React.useState('');
 
     function handleFormSubmit(event) {
@@ -8,7 +9,8 @@ function Input({guessesList, setGuessesList}) {
 
         const nextInputValue = {
             value: inputValue,
-            id: Math.random()
+            id: Math.random(),
+            letterStatuses: checkGuess(inputValue, answer)
         }
 
         setGuessesList([...guessesList, nextInputValue])
