@@ -1,7 +1,7 @@
 import React from 'react';
 import {checkGuess} from "./../../game-helpers";
 
-function Input({guessesList, setGuessesList, answer}) {
+function Input({guessesList, setGuessesList, answer, status, setStatus}) {
     const [ inputValue, setInputValue ] = React.useState('');
 
     function handleFormSubmit(event) {
@@ -14,8 +14,17 @@ function Input({guessesList, setGuessesList, answer}) {
         }
 
         setGuessesList([...guessesList, nextInputValue])
-
         setInputValue('');
+
+        if (inputValue === answer) {
+            setStatus('happy');
+
+            return;
+        }
+
+        if (guessesList.length >= 5) {
+            setStatus('sad');
+        }
     }
     return (
             <form className="guess-input-wrapper"
@@ -23,6 +32,7 @@ function Input({guessesList, setGuessesList, answer}) {
             >
             <label htmlFor="guess-input">Enter guess:</label>
             <input
+                disabled={status && true}
                 required
                 type="text"
                 id="guess-input"
